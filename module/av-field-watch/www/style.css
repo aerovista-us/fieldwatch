@@ -48,3 +48,34 @@ pre {
   white-space: pre-wrap;
   color: #bbf7d0;
 }
+
+button {
+  margin-top: 16px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: #04111f;
+  background: #7dd3fc;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+a {
+  color: #7dd3fc;
+}
+
+.event {
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 10px 0;
+}
+
+.event span {
+  color: #e8f3ff;
+}
+
+.event small,
+.muted {
+  color: #94a3b8;
+}
