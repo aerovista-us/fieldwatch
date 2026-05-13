@@ -6,7 +6,7 @@ async function loadStatus() {
     const data = await res.json();
     el.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
-    el.textContent = 'Status endpoint not reachable yet. Module shell loaded.';
+    el.textContent = 'Status endpoint not reachable yet.';
   }
 }
 
@@ -24,36 +24,71 @@ async function loadEvents() {
 
     el.innerHTML = events.map(event => `
       <div class="event">
-        <strong>${event.type || 'EVENT'}</strong>
-        <span>${event.ssid || event.mac || event.bssid || 'unknown'}</span>
-        <small>${event.last_seen || ''}</small>
+        <strong>${event.type}</strong>
+        <span>${event.ssid || event.mac}</span>
+        <small>${event.last_seen}</small>
       </div>
     `).join('');
   } catch (err) {
-    el.innerHTML = '<p class="muted">Events endpoint not reachable yet.</p>';
+    el.innerHTML = '<p class="muted">Events endpoint unreachable.</p>';
+  }
+}
+
+async function loadSeenDevices() {
+  const el = document.getElementById('seen-devices');
+
+  try {
+    const res = await fetch('../api/seen.php');
+    const devices = await res.json();
+
+    const entries = Object.entries(devices);
+
+    if (!entries.length) {
+      el.innerHTML = '<p class="muted">No known devices yet.</p>';
+      return;
+    }
+
+    el.innerHTML = entries.map(([mac, device]) => `
+      <div class="event">
+        <strong>${mac}</strong>
+        <span>${device.last_ssid || 'unknown ssid'}</span>
+        <small>
+          Seen ${device.count}x · Last ${device.last_seen}
+        </small>
+      </div>
+    `).join('');
+  } catch (err) {
+    el.innerHTML = '<p class="muted">Seen device endpoint unreachable.</p>';
   }
 }
 
 async function addTestEvent() {
-  await fetch('../api/events.php', {
+  await fetch('../api/ingest.php', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-      type: 'TEST_EVENT',
-      ssid: 'FieldWatch Lab',
+      type: 'DEVICE_OBSERVED',
       mac: 'AA:BB:CC:DD:EE:FF',
-      channel: 6,
-      signal: -42
+      ssid: 'TestLab',
+      signal: -42,
+      channel: 6
     })
   });
 
   await loadEvents();
+  await loadSeenDevices();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   loadStatus();
   loadEvents();
+  loadSeenDevices();
 
   const btn = document.getElementById('add-test-event');
-  if (btn) btn.addEventListener('click', addTestEvent);
+
+  if (btn) {
+    btn.addEventListener('click', addTestEvent);
+  }
 });
