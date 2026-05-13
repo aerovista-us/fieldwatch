@@ -25,3 +25,6 @@ temp/
 module/av-field-watch/data/*.json
 module/av-field-watch/data/*.csv
 module/av-field-watch/data/*.pcap
+module/av-fieldwatch/data/*.json
+module/av-fieldwatch/data/*.csv
+module/av-fieldwatch/data/*.pcap
