@@ -15,6 +15,6 @@ FieldWatch turns the Mark VII into a lightweight wireless observability node:
 
 ## Scope
 
-This project is for authorized wireless visibility, property auditing, lab monitoring, and defensive field mapping.
+Authorized wireless visibility, property auditing, lab monitoring, and defensive field mapping.
 
-It does not include deauth, spoofing, captive portal, credential capture, or offensive automation.
+This project does not include deauth, spoofing, captive portals, credential capture, or offensive automation.
