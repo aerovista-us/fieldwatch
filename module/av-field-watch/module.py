@@ -134,5 +134,67 @@ def scan_once(request: Request):
             'error': str(e)
         }
 
+
+@module.handles_action('watcher_start')
+def watcher_start(request: Request):
+    iface = 'wlan2'
+
+    if isinstance(request.body, dict):
+        iface = request.body.get('iface', 'wlan2')
+
+    result = subprocess.run(
+        ['/pineapple/ui/modules/av-field-watch/scripts/fieldwatchctl.sh', 'start', iface],
+        capture_output=True,
+        text=True
+    )
+
+    return {
+        'ok': result.returncode == 0,
+        'stdout': result.stdout,
+        'stderr': result.stderr
+    }
+
+@module.handles_action('watcher_stop')
+def watcher_stop(request: Request):
+    result = subprocess.run(
+        ['/pineapple/ui/modules/av-field-watch/scripts/fieldwatchctl.sh', 'stop'],
+        capture_output=True,
+        text=True
+    )
+
+    return {
+        'ok': result.returncode == 0,
+        'stdout': result.stdout,
+        'stderr': result.stderr
+    }
+
+@module.handles_action('watcher_status')
+def watcher_status(request: Request):
+    result = subprocess.run(
+        ['/pineapple/ui/modules/av-field-watch/scripts/fieldwatchctl.sh', 'status'],
+        capture_output=True,
+        text=True
+    )
+
+    return {
+        'ok': result.returncode == 0,
+        'stdout': result.stdout,
+        'stderr': result.stderr
+    }
+
+@module.handles_action('watcher_log')
+def watcher_log(request: Request):
+    result = subprocess.run(
+        ['/pineapple/ui/modules/av-field-watch/scripts/fieldwatchctl.sh', 'log'],
+        capture_output=True,
+        text=True
+    )
+
+    return {
+        'ok': result.returncode == 0,
+        'stdout': result.stdout,
+        'stderr': result.stderr
+    }
+
 if __name__ == '__main__':
     module.start()
