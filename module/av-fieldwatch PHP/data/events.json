@@ -1,0 +1,13 @@
+[
+    {
+        "id": "fw_6a04f360eb6d95.89120071",
+        "type": "NEW_DEVICE",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "ssid": "TestLab",
+        "signal": -42,
+        "channel": 6,
+        "source": "fieldwatch",
+        "first_seen": "2026-05-13T21:55:44+00:00",
+        "last_seen": "2026-05-13T21:55:44+00:00"
+    }
+]

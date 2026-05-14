@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AeroVista FieldWatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">AeroVista FieldWatch</p>
+      <h1>Passive Wireless Observability</h1>
+
+      <p>
+        Mark VII field mapping, device awareness,
+        SSID monitoring, and telemetry collection.
+      </p>
+
+      <button id="add-test-event">Add Test Event</button>
+    </section>
+
+    <section class="cards">
+      <article>
+        <h2>Status</h2>
+        <pre id="status">Loading...</pre>
+      </article>
+
+      <article>
+        <h2>Recent Events</h2>
+        <div id="events">Loading...</div>
+      </article>
+
+      <article>
+        <h2>Known Devices</h2>
+        <div id="seen-devices">Loading...</div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

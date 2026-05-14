@@ -1,0 +1,9 @@
+{
+  "name": "av-field-watch",
+  "title": "FieldWatch",
+  "description": "Passive wireless field mapping, new SSID detection, and new MAC alerting.",
+  "author": "AeroVista",
+  "version": "0.1.0",
+  "firmware_required": "2.1.3",
+  "devices": ["wifipineapplemk7"]
+}

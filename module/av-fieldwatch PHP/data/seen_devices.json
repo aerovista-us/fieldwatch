@@ -1,0 +1,16 @@
+{
+    "AA:BB:CC:DD:EE:FF": {
+        "first_seen": "2026-05-13T21:55:44+00:00",
+        "last_seen": "2026-05-13T22:04:51+00:00",
+        "count": 2,
+        "vendor": null,
+        "last_ssid": "TestLab",
+        "signals": [
+            -42,
+            -42
+        ],
+        "channels": [
+            6
+        ]
+    }
+}
